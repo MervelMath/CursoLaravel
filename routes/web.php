@@ -34,3 +34,12 @@ Route::get('ola/{nome?}', function ($nome = null) {
 Route::get('ola/{nome}/{sobrenome}', function ($nome, $sobrenome) {
     echo    "Olá. Seja bem vindo, $nome $sobrenome!";
 });
+
+//  TAREFA 5:
+
+Route::get("tipoproduto/add/{descricao}", function($descricao){
+});
+
+Route::get("produto/add/{nome}/{preco}/{Tipo_Produtos_id}/{ingredientes}/{urlImage}",
+function($nome, $preco, $Tipo_Produtos_id, $ingredientes, $urlImage){
+});
