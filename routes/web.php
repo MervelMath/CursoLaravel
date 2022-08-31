@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 //cria todas as rotas do controlador, automaticamente.
 Route::resource('/tipoproduto', 'App\Http\Controllers\TipoProdutoController');
+Route::resource('/produto', 'App\Http\Controllers\ProdutoController');
 
 
 // Route::get('teste', function () {

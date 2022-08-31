@@ -12,22 +12,26 @@
 </head>
 <body>
     <div class="container">
-        {{-- <?php print_r($tipoProdutos)?> --}}
-        <a class="btn btn-primary" href="/tipoproduto/create">Criar Tipo de Produto</a>
+        {{-- <?php print_r($produtos)?> --}}
+        <a class="btn btn-primary" href="/produto/create">Criar Produto</a>
         <a class="btn btn-primary" href="#">Voltar</a>
         <table class="table table-dark">
             <thead>
               <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Descrição</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Preço</th>
                 <th scope="col">Ações</th>
               </tr>
             </thead>
             <tbody>
-                @foreach ($tipoProdutos as $tipoProduto)
+                @foreach ($produtos as $produto)
                     <tr>
-                        <th scope="row">{{$tipoProduto->id}}</th>
-                        <td>{{$tipoProduto->descricao}}</td>
+                        <th scope="row">{{$produto->id}}</th>
+                        <td>{{$produto->nome}}</td>
+                        <td>{{$produto->Tipo_Produtos_id}}</td>
+                        <td>{{$produto->preco}}</td>
                         <td>
                             <a href="#" class="btn btn-primary">Mostrar</a>
                             <a href="#" class="btn btn-secondary">Editar</a>

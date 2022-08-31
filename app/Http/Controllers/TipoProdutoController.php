@@ -21,7 +21,7 @@ class TipoProdutoController extends Controller
         //$tipoProdutos = TipoProduto::all();
         $tipoProdutos = DB::select('SELECT * FROM TIPO_PRODUTOS', [1]);      
 
-        print_r($tipoProdutos);
+        //print_r($tipoProdutos);
 
         return view("TipoProduto/index") -> with("tipoProdutos", $tipoProdutos);
     }
@@ -44,10 +44,13 @@ class TipoProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        $tipoProduto = TipoProduto();
-        $tipoProduto->descricao = $request->descricao;
-        $tipoProduto->save();
-        return $this->index();
+        echo $request->descricao ."<br>";
+        echo $request->_token ."<br>";
+
+        // $tipoProduto = TipoProduto();
+        // $tipoProduto->descricao = $request->descricao;
+        // $tipoProduto->save();
+        // return $this->index();
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produto;
+use Illuminate\Support\Facades\DB;
 
 class ProdutoController extends Controller
 {
@@ -13,7 +15,12 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+       // $val = 1;
+      //  $produtos = DB::select('SELECT * FROM PRODUTOS WHERE id = ?', [$val]);
+
+
+        $produtos = DB::select('SELECT * FROM PRODUTOS'); //Sempre retorna um array []
+        return view("Produto/index") -> with("produtos", $produtos);
     }
 
     /**
@@ -23,7 +30,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        return view("Produto/create");
     }
 
     /**
@@ -34,7 +41,7 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo $request->nome ."<br>";
     }
 
     /**
