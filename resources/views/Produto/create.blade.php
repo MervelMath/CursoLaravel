@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" action="/produto">
+        <form method="POST" action="{{route("produto.store")}}">
 
             {{-- "@csrf" Serve para aceitar o post. --}}
             @csrf
@@ -31,20 +31,27 @@
                 <input name="preco" type="text" class="form-control" id="id-input-preco" placeholder="Preço">
             </div>
             <div class="form-group">
-                <label for="id-input-tipo">Tipo</label>
-                <input name="tipo" type="text" class="form-control" id="id-input-tipo" placeholder="Tipo">
+                <label for="id-select-Tipo-Produtos-id">Tipo</label>
+                <select name="Tipo_Produtos_id" class="form-select" id="id-select-Tipo-Produtos-id" aria-label="Selecione um tipo de produto">
+                    @foreach($tipoProdutos as $tipoProduto)
+                        <option value="{{$tipoProduto->id}}">{{$tipoProduto->descricao}}</option>
+                    @endforeach
+                    
+                    <option value="2">Suco</option>
+                    <option value="3">Cerveja</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="id-input-ingrediente">Ingredientes</label>
-                <input name="ingrediente" type="text" class="form-control" id="id-input-ingrediente" placeholder="Ingredientes">
+                <input name="ingredientes" type="text" class="form-control" id="id-input-ingrediente" placeholder="Ingredientes">
             </div>
             <div class="form-group">
                 <label for="id-input-imagem">URL Imagem</label>
-                <input name="imagem" type="text" class="form-control" id="id-input-imagem" placeholder="URL Imagem">
+                <input name="urlImage" type="text" class="form-control" id="id-input-imagem" placeholder="URL Imagem">
             </div>
             <div class="my-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-primary" href="/produto">Voltar</a>
+                <a class="btn btn-primary" href="{{route("produto.index")}}">Voltar</a>
             </div>
           </form>
     </div>

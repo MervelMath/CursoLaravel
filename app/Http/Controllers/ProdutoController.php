@@ -19,7 +19,14 @@ class ProdutoController extends Controller
       //  $produtos = DB::select('SELECT * FROM PRODUTOS WHERE id = ?', [$val]);
 
 
-        $produtos = DB::select('SELECT * FROM PRODUTOS'); //Sempre retorna um array []
+        $produtos = DB::select("SELECT PRODUTOS.ID AS id, 
+                                        PRODUTOS.NOME AS nome,
+                                        PRODUTOS.PRECO AS preco,
+                                        TIPO_PRODUTOS.DESCRICAO AS descricao
+                                        FROM PRODUTOS
+                                        JOIN TIPO_PRODUTOS ON 
+                                        PRODUTOS.TIPO_PRODUTOS_ID = TIPO_PRODUTOS.ID"); //Sempre retorna um array []
+                                        
         return view("Produto/index") -> with("produtos", $produtos);
     }
 
@@ -30,7 +37,9 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view("Produto/create");
+        $tipoProdutos = DB::select('SELECT * FROM TIPO_PRODUTOS');
+
+        return view("Produto/create") -> with("tipoProdutos", $tipoProdutos);
     }
 
     /**
@@ -41,7 +50,15 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        echo $request->nome ."<br>";
+        $produto = new Produto();
+        $produto ->nome = $request -> nome;
+        $produto ->preco = $request -> preco;
+        $produto ->Tipo_Produtos_id = $request -> Tipo_Produtos_id;
+        $produto ->ingredientes = $request -> ingredientes;
+        $produto ->urlImage = $request -> urlImage;
+        
+        $produto -> save();
+        return $this -> index();
     }
 
     /**
@@ -52,7 +69,28 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+        $produtos = DB::select("SELECT
+                                    produtos.id as id,
+                                    produtos.nome as nome,
+                                    produtos.preco as preco,
+                                    produtos.Tipo_Produtos_id as Tipo_Produtos_id,
+                                    tipo_produtos.descricao as descricao,
+                                    produtos.ingredientes as ingredientes,
+                                    produtos.urlimage as urlImage,
+                                    produtos.updated_at as updated_at,
+                                    produtos.created_at as created_at
+                                from produtos
+                                join tipo_produtos on produtos.Tipo_Produtos_id = Tipo_Produtos_id
+                                where Produtos.id = ?", [$id]);
+
+
+        if(count($produtos) > 0)
+            return view("Produto/show")->with("produto", $produtos[0]);
+
+        echo "Produto não encontrado!";
+
+
+       // $produto = DB::select('SELECT * FROM Produtos where active = ?', [1]);
     }
 
     /**

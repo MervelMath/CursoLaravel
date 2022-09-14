@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         {{-- <?php print_r($tipoProdutos)?> --}}
-        <a class="btn btn-primary" href="/tipoproduto/create">Criar Tipo de Produto</a>
+        <a class="btn btn-primary" href="{{route("tipoproduto.create")}}">Criar Tipo Produto</a>
         <a class="btn btn-primary" href="#">Voltar</a>
         <table class="table table-dark">
             <thead>
@@ -29,7 +29,7 @@
                         <th scope="row">{{$tipoProduto->id}}</th>
                         <td>{{$tipoProduto->descricao}}</td>
                         <td>
-                            <a href="#" class="btn btn-primary">Mostrar</a>
+                            <a href="{{route("produto.show", $tipoProduto ->id)}}" class="btn btn-primary">Mostrar</a>
                             <a href="#" class="btn btn-secondary">Editar</a>
                             <a href="#" class="btn btn-danger">remover</a>
                         </td>

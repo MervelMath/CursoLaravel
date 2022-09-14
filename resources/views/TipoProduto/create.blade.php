@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" action="/tipoproduto">
+          <form method="POST" action="{{route("tipoproduto.store")}}">
 
             {{-- "@csrf" Serve para aceitar o post. --}}
             @csrf
@@ -28,7 +28,7 @@
             </div>
             <div class="my-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-primary" href="/tipoproduto">Voltar</a>
+                <a class="btn btn-primary" href="{{route("tipoproduto.index")}}">Voltar</a>
             </div>
           </form>
     </div>
