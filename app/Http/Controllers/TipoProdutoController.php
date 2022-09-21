@@ -66,7 +66,8 @@ class TipoProdutoController extends Controller
                     tipo_produtos.descricao as descricao,
                     tipo_produtos.updated_at as updated_at,
                     tipo_produtos.created_at as created_at
-                from tipo_produtos");
+                from tipo_produtos
+                where id = ?", [$id]);
 
 
         if(count($tipoProduto) > 0)
@@ -83,7 +84,17 @@ class TipoProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tipoproduto = TipoProduto::find($id);
+
+        if(isset($tipoproduto)){
+            //dd($tipoproduto);
+            return view("TipoProduto/edit")
+                                        ->with("tipoproduto", $tipoproduto);
+
+        }
+        //#TODO implementar tratamento de exceção
+        
+        echo "Tipo de produto não encontrado";
     }
 
     /**
@@ -95,7 +106,17 @@ class TipoProdutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+       $tipoproduto = TipoProduto::find($id);
+
+       if(isset($tipoproduto)){
+           $tipoproduto->descricao = $request->descricao;
+           $tipoproduto->update();
+           //Recarregar view index:
+           return $this->index();
+       }
+       //Tratar exceções.
+       echo "Produto não encontrado";
     }
 
     /**
