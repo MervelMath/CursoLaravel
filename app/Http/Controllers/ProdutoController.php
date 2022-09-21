@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\TipoProduto;
 use Illuminate\Support\Facades\DB;
 
 class ProdutoController extends Controller
@@ -101,7 +102,21 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produto = Produto::find($id);
+
+        if(isset($produto)){
+
+            //Array com todos os tipo produtos do banco.
+            $tipoProdutos = TipoProduto::all();
+            return view("Produto/edit")
+                                        ->with("produto", $produto)
+                                        ->with("tipoProdutos", $tipoProdutos);
+
+        }
+        //#TODO implementar tratamento de exceçã
+        
+        echo "Produto não encontrado";
+        
     }
 
     /**
@@ -113,7 +128,22 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       // echo "Tipo $request->Tipo_Produtos_id";
+
+       $produto = Produto::find($id);
+
+       if(isset($produto)){
+           $produto->nome = $request->nome;
+           $produto->preco = $request->preco;
+           $produto->Tipo_Produtos_id = $request->Tipo_Produtos_id;
+           $produto->ingredientes = $request->ingredientes;
+           $produto->urlImage = $request->urlImage;
+           $produto->update();
+           //Recarregar view index:
+           return $this->index();
+       }
+       //Tratar exceções.
+       echo "Produto não encontrado";
     }
 
     /**

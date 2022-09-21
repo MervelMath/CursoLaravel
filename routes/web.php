@@ -24,39 +24,8 @@ Route::resource('/tipoproduto', 'App\Http\Controllers\TipoProdutoController');
 Route::resource('/produto', 'App\Http\Controllers\ProdutoController');
 
 
-// Route::get('teste', function () {
-//     echo    "<html>
-//                 <h1>Teste</h1>
-//             </html>";
-// });
-
-// Route::get('ola/{nome?}', function ($nome = null) {
-//     if(isset($nome))
-//         echo    "Olá. Seja bem vindo, $nome!";
-        
-//     else
-//         echo    "Olá. Seja bem vindo!";
-// });
-
-// Route::get('ola/{nome}/{sobrenome}', function ($nome, $sobrenome) {
-//     echo    "Olá. Seja bem vindo, $nome $sobrenome!";
-// });
-
-// //  TAREFA 4:
-
-// Route::get('tipoproduto/add/{descricao}', function ($descricao) {
-//     $tipoProduto = new TipoProduto();
-//     $tipoProduto->descricao = $descricao;
-//     $tipoProduto->save();
-// });
-
-// Route::get('produto/add/{nome}/{preco}/{Tipo_Produtos_id}/{ingredientes}/{urlImage}',
-// function($nome, $preco, $Tipo_Produtos_id, $ingredientes, $urlImage) {
-//     $produto = new Produto();
-//     $produto->nome = $nome;
-//     $produto->preco = $preco;
-//     $produto->Tipo_Produtos_id = $Tipo_Produtos_id;
-//     $produto->ingredientes = $ingredientes;
-//     $produto->urlImage = $urlImage;
-//     $produto->save();
-// });
+Route::get('teste', function (){
+    $produto = Produto::find(1);
+    //$produto = Produto::where('nome', 'pizza')->get();
+    dd($produto);
+});
