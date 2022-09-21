@@ -61,7 +61,18 @@ class TipoProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipoProduto = DB::select("SELECT
+                    tipo_produtos.id as id,
+                    tipo_produtos.descricao as descricao,
+                    tipo_produtos.updated_at as updated_at,
+                    tipo_produtos.created_at as created_at
+                from tipo_produtos");
+
+
+        if(count($tipoProduto) > 0)
+        return view("TipoProduto/show")->with("tipoProduto", $tipoProduto[0]);
+
+        echo "Tipo de Produto não encontrado não encontrado!";
     }
 
     /**

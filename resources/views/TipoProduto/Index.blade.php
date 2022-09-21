@@ -29,7 +29,7 @@
                         <th scope="row">{{$tipoProduto->id}}</th>
                         <td>{{$tipoProduto->descricao}}</td>
                         <td>
-                            <a href="{{route("produto.show", $tipoProduto ->id)}}" class="btn btn-primary">Mostrar</a>
+                            <a href="{{route("tipoproduto.show", $tipoProduto ->id)}}" class="btn btn-primary">Mostrar</a>
                             <a href="#" class="btn btn-secondary">Editar</a>
                             <a href="#" class="btn btn-danger">remover</a>
                         </td>
